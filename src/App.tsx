@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import logo from './logo.svg';
 import './App.css';
-import MergSort from './components/mergsort'
+import { MergSortVisualizer } from './components/mergsort'
 
 function App() {
 
@@ -14,7 +13,7 @@ function App() {
   const resetArray = () => {
     const array: number[] = []
     for (let i = 0; i < 100; i++) {
-      array.push(randomIntFromIntervals(10, 1000))
+      array.push(randomIntFromIntervals(10, 800))
     }
     setArray(array)
     console.log(array)
@@ -26,7 +25,10 @@ function App() {
 
   return (
     <div className="App">
-      <MergSort
+      <div className='app-header'>
+        <h3>Sorting Visualizer</h3>
+      </div>
+      <MergSortVisualizer
         array={array}
       />
     </div>
