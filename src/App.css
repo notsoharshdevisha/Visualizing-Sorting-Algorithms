@@ -2,6 +2,13 @@
   text-align: center;
 }
 
+.buttons {
+  display: flex;
+  margin: 50px;
+  margin-bottom: 0px;
+  margin-top: 0px;
+}
+
 .array-container {
   display: flex;
   margin: 200px;

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './App.css';
-import { MergSortVisualizer } from './components/mergsort'
+import { MergSortVisualizer, mergSort, performAnimation } from './components/mergsort'
 
 function App() {
 
@@ -8,7 +8,9 @@ function App() {
     resetArray()
   }
     , [])
+
   const [array, setArray] = useState<number[]>([])
+  const [animation, setAnimation] = useState<number[][]>([])
 
   const resetArray = () => {
     const array: number[] = []
@@ -16,11 +18,14 @@ function App() {
       array.push(randomIntFromIntervals(10, 800))
     }
     setArray(array)
-    console.log(array)
   }
 
   const randomIntFromIntervals = (min: number, max: number) => {
     return Math.floor(Math.random() * (max - min + 1) + min)
+  }
+
+  const initiateMergSort = () => {
+    mergSort(array, animation)
   }
 
   return (
@@ -28,8 +33,12 @@ function App() {
       <div className='app-header'>
         <h3>Sorting Visualizer</h3>
       </div>
+      <div className='buttons'>
+        <button onClick={initiateMergSort}>mergsort</button>
+      </div>
       <MergSortVisualizer
         array={array}
+        animation={animation}
       />
     </div>
   )

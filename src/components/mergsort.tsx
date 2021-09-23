@@ -1,23 +1,25 @@
 import React from 'react';
 
 export function mergSort(
-  array: number[]
+  array: number[],
+  animation: number[][]
 ) {
   const auxArray = array.slice()
-  recursiveSplit(0, array.length - 1, array, auxArray)
+  recursiveSplit(0, array.length - 1, array, auxArray, animation)
 }
 
 const recursiveSplit = (
   startIdx: number,
   endIdx: number,
   array: number[],
-  auxArray: number[]
+  auxArray: number[],
+  animation: number[][]
 ) => {
   if (startIdx === endIdx) return
   const middleIdx = Math.floor((startIdx + endIdx) / 2)
-  recursiveSplit(startIdx, middleIdx, array, auxArray)
-  recursiveSplit(middleIdx + 1, endIdx, array, auxArray)
-  merge(startIdx, middleIdx, endIdx, array, auxArray)
+  recursiveSplit(startIdx, middleIdx, array, auxArray, animation)
+  recursiveSplit(middleIdx + 1, endIdx, array, auxArray, animation)
+  merge(startIdx, middleIdx, endIdx, array, auxArray, animation)
 }
 
 const merge = (
@@ -25,7 +27,8 @@ const merge = (
   middleIdx: number,
   endIdx: number,
   array: number[],
-  auxArray: number[]
+  auxArray: number[],
+  animation: number[][]
 ) => {
   let k = startIdx
   let i = startIdx
@@ -33,7 +36,9 @@ const merge = (
   while (i <= middleIdx && j <= endIdx) {
     if (auxArray[i] <= auxArray[j]) {
       array[k++] = auxArray[i++]
+      animation.push([k, auxArray[i]])
     } else {
+      animation.push([k, auxArray[j]])
       array[k++] = auxArray[j++]
     }
   }
@@ -43,6 +48,12 @@ const merge = (
   while (j <= endIdx) {
     array[k++] = auxArray[j++]
   }
+}
+
+export function performAnimation(
+  animation: number[][],
+) {
+
 }
 
 export function MergSortVisualizer(props: any) {
