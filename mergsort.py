@@ -1,44 +1,49 @@
-def mergeSort(myList):
-    if len(myList) > 1:
-        mid = len(myList) // 2
-        left = myList[:mid]
-        right = myList[mid:]
+array = [3, 2, 1]
 
-        # Recursive call on each half
-        mergeSort(left)
-        mergeSort(right)
+def merg_sort(array):
+    if (len(array) <= 1): 
+        return
+    aux_array = array.copy()
+    split(0, len(array)-1, array, aux_array)
+    
+def split(startidx, endidx, array, aux_array):
+    print(aux_array[startidx:endidx+1])
+    if (startidx == endidx):
+        return
+#    print('split called')
+    middleidx = (startidx + endidx) // 2
+#    print(f's{startidx} m{middleidx} e{endidx}')
+    split(startidx, middleidx, array, aux_array)
+    split(middleidx+1, endidx, array, aux_array)
+    merge(startidx, middleidx, endidx, array, aux_array)
 
-        # Two iterators for traversing the two halves
-        i = 0
-        j = 0
-        
-        # Iterator for the main list
-        k = 0
-        
-        while i < len(left) and j < len(right):
-            if left[i] <= right[j]:
-              # The value from the left half has been used
-              myList[k] = left[i]
-              # Move the iterator forward
-              i += 1
-            else:
-                myList[k] = right[j]
-                j += 1
-            # Move to the next slot
-            k += 1
+def merge(startidx, middleidx, endidx, array, aux_array):
+#    print('merge called')
+    i = startidx
+    k = startidx
+    j = middleidx+1
+#    print(f'i{startidx} j{startidx} k{startidx}')
 
-        # For all the remaining values
-        while i < len(left):
-            myList[k] = left[i]
-            i += 1
-            k += 1
+    while ((i <= middleidx) and (j <= endidx)):
+        if (aux_array[i] <= aux_array[j]):
+            array[k] = aux_array[i]
+            k+=1
+            i+=1
+        else:
+            array[k] = aux_array[j]
+            k+=1
+            j+=1
+    
+    while (i<=middleidx):
+        array[k] = aux_array[i]
+        k+=1
+        i+=1
 
-        while j < len(right):
-            myList[k]=right[j]
-            j += 1
-            k += 1
+    while (j<=endidx):
+        array[k] = aux_array[j]
+        k+=1
+        j+=1
 
-myList = [54,26,93,17,77,31,44,55,20]
-mergeSort(myList)
-print(myList)
-
+print(array)
+merg_sort(array) 
+print(array)

@@ -2,18 +2,28 @@
   text-align: center;
 }
 
-.buttons {
-  display: flex;
+.buttons-container {
+  display:flex;
   margin: 50px;
   margin-bottom: 0px;
   margin-top: 0px;
+  padding: 20px;
 }
 
-.array-container {
+.button {
+  margin-left: 30px;
+  height: 30px;
+  font-size: 13px;
+  font-weight: 700;
+  background-color: lightcyan;
+  border-radius: 5px;
+}
+
+.visualizer-box {
   display: flex;
   margin: 200px;
   margin-top: 10px;
-  margin-bottom: 100px;
+  margin-bottom: 50px;
 }
 
 .array-bar {
