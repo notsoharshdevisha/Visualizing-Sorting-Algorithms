@@ -48,7 +48,7 @@ export function QuickSortAnimation(
           barSwapKey++
         }
       }
-    }, i * 500)
+    }, i * 5)
   }
 }
 

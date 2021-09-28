@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './App.css';
 import { QuickSort, QuickSortAnimation } from './components/quicksort'
+import { BubbleSort, BubbleSortAnimation } from './components/bubblesort'
 
 function App() {
 
@@ -14,7 +15,7 @@ function App() {
 
   const getArray = () => {
     const array: number[] = []
-    for (let i = 0; i < 5; i++) {
+    for (let i = 0; i < 200; i++) {
       array.push(randomIntFromIntervals(10, 600))
     }
     setArray(array)
@@ -35,9 +36,16 @@ function App() {
     let animation: number[][] = []
     QuickSort(array, 0, array.length - 1, animation)
     setArray(array)
-
     const bars = document.getElementsByClassName('array-bar') as HTMLCollectionOf<HTMLElement>
     QuickSortAnimation(animation, bars)
+  }
+
+  const initiateBubbleSort = () => {
+    let animation: number[][] = []
+    BubbleSort(array, animation)
+    setArray(array)
+    const bars = document.getElementsByClassName('array-bar') as HTMLCollectionOf<HTMLElement>
+    BubbleSortAnimation(animation, bars)
   }
 
   return (
@@ -54,6 +62,9 @@ function App() {
         <button className='button'
           onClick={initiateQuickSort}
         >QuickSort</button>
+        <button className='button'
+          onClick={initiateBubbleSort}
+        >Bubble Sort</button>
       </div>
 
       <div className='visualizer-box'>
