@@ -5,7 +5,6 @@ import { QuickSort, QuickSortAnimation } from './components/quicksort'
 function App() {
 
   const [array, setArray] = useState<number[]>([])
-  const [animation, setAnimation] = useState<number[][]>([])
   const [resetArray, setResetArray] = useState<boolean>(true)
 
   useEffect(() => {
@@ -33,11 +32,12 @@ function App() {
     */
 
   const initiateQuickSort = () => {
+    let animation: number[][] = []
     QuickSort(array, 0, array.length - 1, animation)
     setArray(array)
 
     const bars = document.getElementsByClassName('array-bar') as HTMLCollectionOf<HTMLElement>
-    QuickSortAnimation(animation)
+    QuickSortAnimation(animation, bars)
   }
 
   return (

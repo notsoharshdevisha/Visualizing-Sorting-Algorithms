@@ -15,9 +15,8 @@ export function QuickSort(
 
 export function QuickSortAnimation(
   animation: number[][],
+  bars: HTMLCollectionOf<HTMLElement>,
 ) {
-  const bars = document.getElementsByClassName('array-bar') as HTMLCollectionOf<HTMLElement>
-
   let animationColorKey: number = 1
   let barSwapKey: number = 1
   console.log(animation)
