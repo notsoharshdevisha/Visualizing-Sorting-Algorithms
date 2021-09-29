@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import './App.css';
 import { QuickSort, QuickSortAnimation } from './components/quicksort'
 import { BubbleSort, BubbleSortAnimation } from './components/bubblesort'
+import { SelectionSort, SelectionSortAnimation } from './components/selectionsort'
 
 function App() {
 
@@ -48,6 +49,14 @@ function App() {
     BubbleSortAnimation(animation, bars)
   }
 
+  const initiateSelectionSort = () => {
+    let animation: number[][] = []
+    SelectionSort(array, animation)
+    console.log(animation)
+    const bars = document.getElementsByClassName('array-bar') as HTMLCollectionOf<HTMLElement>
+    SelectionSortAnimation(animation, bars)
+  }
+
   return (
     <div className="App">
 
@@ -65,6 +74,9 @@ function App() {
         <button className='button'
           onClick={initiateBubbleSort}
         >Bubble Sort</button>
+        <button className='button'
+          onClick={initiateSelectionSort}
+        >Selection Sort</button>
       </div>
 
       <div className='visualizer-box'>
