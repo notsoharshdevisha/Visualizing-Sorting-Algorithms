@@ -27,8 +27,8 @@ export function SelectionSortAnimation(
   let barSwapKey: number = 1
   for (let i = 0; i < animation.length; i++) {
     setTimeout(() => {
-      let [bar1idx, bar2idx, swapbar1idx, swapbar2idx] = animation[i]
-      if (!swapbar1idx && !swapbar2idx) {
+      let [bar1idx, bar2idx, swapbar1, swapbar2] = animation[i]
+      if (!swapbar1 && !swapbar2) {
         if (animationColorKey === 1) {
           bars[bar1idx].style.backgroundColor = 'orange'
           bars[bar2idx].style.backgroundColor = 'orange'

@@ -2,60 +2,91 @@ import React from 'react';
 
 export function MergSort(
   array: number[],
+  animation: number[][],
 ) {
+  if (array.length <= 1) return array
   const auxArray = array.slice()
-  split(0, array.length - 1, array, auxArray)
+  Split(array, 0, array.length - 1, auxArray, animation)
 }
 
-const split = (
-  startIdx: number,
-  endIdx: number,
+function Split(
   array: number[],
+  start: number,
+  end: number,
   auxArray: number[],
-) => {
-  if (startIdx === endIdx) return
-  const middleIdx: number = Math.floor((startIdx + endIdx) / 2)
-  split(startIdx, middleIdx, array, auxArray)
-  split(middleIdx + 1, endIdx, array, auxArray)
-  merg(startIdx, middleIdx, endIdx, array, auxArray)
+  animation: number[][],
+) {
+  if (start === end) return
+  const middle = Math.floor((start + end) / 2)
+  Split(auxArray, start, middle, array, animation)
+  Split(auxArray, middle + 1, end, array, animation)
+  merge(array, start, middle, end, auxArray, animation)
 }
 
-const merg = (
-  startIdx: number,
-  middleIdx: number,
-  endIdx: number,
+function merge(
   array: number[],
+  start: number,
+  middle: number,
+  end: number,
   auxArray: number[],
-) => {
-  let i = startIdx
-  let j = middleIdx + 1
-  let k = startIdx
-  while (i <= middleIdx && j <= endIdx) {
+  animation: number[][],
+) {
+  let swapKey = 1
+  let k = start
+  let i = start
+  let j = middle + 1
+  while (i <= middle && j <= end) {
+    animation.push([i, j, null])
+    animation.push([i, j, null])
     if (auxArray[i] <= auxArray[j]) {
+      animation.push([i, k, swapKey])
       array[k++] = auxArray[i++]
     } else {
+      animation.push([j, k, swapKey])
       array[k++] = auxArray[j++]
     }
   }
-  while (i <= middleIdx) {
+  while (i <= middle) {
+    animation.push([i, k, swapKey])
     array[k++] = auxArray[i++]
   }
-  while (j <= endIdx) {
+  while (j <= end) {
+    animation.push([j, k, swapKey])
     array[k++] = auxArray[j++]
   }
 }
 
-export function MergSortVisualizer(props: any) {
-
-  return (
-    <div className="MergSort">
-      <div className='array-container'>
-        {props.array.map((element: number) => {
-          return <div className='array-bar'
-            style={{ height: `${element}px` }} ></div>
-        })}
-      </div>
-
-    </div >
-  );
+export function MergSortAnimation(
+  animation: number[][],
+  bars: HTMLCollectionOf<HTMLElement>,
+) {
+  let animationColorKey = 1
+  let swapbarKey = 1
+  for (let i = 0; i < animation.length; i++) {
+    let [bar1idx, bar2idx, swapkey] = animation[i]
+    setTimeout(() => {
+      if (!swapkey) {
+        if (animationColorKey === 1) {
+          bars[bar1idx].style.backgroundColor = 'orange'
+          bars[bar2idx].style.backgroundColor = 'orange'
+          animationColorKey--
+        } else {
+          bars[bar1idx].style.backgroundColor = 'turquoise'
+          bars[bar2idx].style.backgroundColor = 'turquoise'
+          animationColorKey++
+        }
+      } else {
+        if (swapbarKey === 1) {
+          let newheight = bars[bar1idx].style.height
+          bars[bar2idx].style.height = newheight
+          bars[bar2idx].style.backgroundColor = 'red'
+          swapbarKey--
+        } else {
+          bars[bar1idx].style.backgroundColor = 'turquoise'
+          bars[bar2idx].style.backgroundColor = 'turquoise'
+          swapbarKey++
+        }
+      }
+    }, i * 500)
+  }
 }

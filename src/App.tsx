@@ -3,6 +3,8 @@ import './App.css';
 import { QuickSort, QuickSortAnimation } from './components/quicksort'
 import { BubbleSort, BubbleSortAnimation } from './components/bubblesort'
 import { SelectionSort, SelectionSortAnimation } from './components/selectionsort'
+import { MergSort, MergSortAnimation } from './components/mergsort'
+import { InsertionSort, InsertionSortAnimation } from './components/insertionsort'
 
 function App() {
 
@@ -16,7 +18,7 @@ function App() {
 
   const getArray = () => {
     const array: number[] = []
-    for (let i = 0; i < 200; i++) {
+    for (let i = 0; i < 50; i++) {
       array.push(randomIntFromIntervals(10, 600))
     }
     setArray(array)
@@ -25,13 +27,15 @@ function App() {
   const randomIntFromIntervals = (min: number, max: number) => {
     return Math.floor(Math.random() * (max - min + 1) + min)
   }
-  /*
-    const initiateMergSort = () => {
-      console.log(array)
-      MergSort(array)
-      console.log(array)
-    }
-    */
+
+  const initiateMergSort = () => {
+    let animation: number[][] = []
+    MergSort(array, animation)
+    console.log(animation)
+    console.log(array)
+    const bars = document.getElementsByClassName('array-bar') as HTMLCollectionOf<HTMLElement>
+    MergSortAnimation(animation, bars)
+  }
 
   const initiateQuickSort = () => {
     let animation: number[][] = []
@@ -52,9 +56,16 @@ function App() {
   const initiateSelectionSort = () => {
     let animation: number[][] = []
     SelectionSort(array, animation)
-    console.log(animation)
     const bars = document.getElementsByClassName('array-bar') as HTMLCollectionOf<HTMLElement>
     SelectionSortAnimation(animation, bars)
+  }
+
+  const initiateInsertionSort = () => {
+    const bars = document.getElementsByClassName('array-bar') as HTMLCollectionOf<HTMLElement>
+    let animation: number[][] = []
+    InsertionSort(array, animation)
+    console.log(animation)
+    InsertionSortAnimation(animation, bars)
   }
 
   return (
@@ -69,6 +80,9 @@ function App() {
           onClick={() => { resetArray ? setResetArray(false) : setResetArray(true) }}
         >Reset Array</button>
         <button className='button'
+          onClick={initiateMergSort}
+        >MergSort</button>
+        <button className='button'
           onClick={initiateQuickSort}
         >QuickSort</button>
         <button className='button'
@@ -77,6 +91,9 @@ function App() {
         <button className='button'
           onClick={initiateSelectionSort}
         >Selection Sort</button>
+        <button className='button'
+          onClick={initiateInsertionSort}
+        >InsertionSort</button>
       </div>
 
       <div className='visualizer-box'>
