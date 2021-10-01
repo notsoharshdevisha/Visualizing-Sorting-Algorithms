@@ -31,27 +31,30 @@ function merge(
   auxArray: number[],
   animation: number[][],
 ) {
-  let swapKey = 1
   let k = start
   let i = start
   let j = middle + 1
   while (i <= middle && j <= end) {
-    animation.push([i, j, null])
-    animation.push([i, j, null])
+    animation.push([i, j, null, null])
+    animation.push([i, j, null, null])
     if (auxArray[i] <= auxArray[j]) {
-      animation.push([i, k, swapKey])
+      animation.push([k, null, auxArray[i], 1])
+      animation.push([k, null, auxArray[i], 1])
       array[k++] = auxArray[i++]
     } else {
-      animation.push([j, k, swapKey])
+      animation.push([k, null, auxArray[j], 1])
+      animation.push([k, null, auxArray[j], 1])
       array[k++] = auxArray[j++]
     }
   }
   while (i <= middle) {
-    animation.push([i, k, swapKey])
+    animation.push([k, null, auxArray[i], 1])
+    animation.push([k, null, auxArray[i], 1])
     array[k++] = auxArray[i++]
   }
   while (j <= end) {
-    animation.push([j, k, swapKey])
+    animation.push([k, null, auxArray[j], 1])
+    animation.push([k, null, auxArray[j], 1])
     array[k++] = auxArray[j++]
   }
 }
@@ -63,7 +66,7 @@ export function MergSortAnimation(
   let animationColorKey = 1
   let swapbarKey = 1
   for (let i = 0; i < animation.length; i++) {
-    let [bar1idx, bar2idx, swapkey] = animation[i]
+    let [bar1idx, bar2idx, newheight, swapkey] = animation[i]
     setTimeout(() => {
       if (!swapkey) {
         if (animationColorKey === 1) {
@@ -77,16 +80,14 @@ export function MergSortAnimation(
         }
       } else {
         if (swapbarKey === 1) {
-          let newheight = bars[bar1idx].style.height
-          bars[bar2idx].style.height = newheight
-          bars[bar2idx].style.backgroundColor = 'red'
+          bars[bar1idx].style.height = `${newheight}px`
+          bars[bar1idx].style.backgroundColor = 'red'
           swapbarKey--
         } else {
           bars[bar1idx].style.backgroundColor = 'turquoise'
-          bars[bar2idx].style.backgroundColor = 'turquoise'
           swapbarKey++
         }
       }
-    }, i * 500)
+    }, i * 5)
   }
 }

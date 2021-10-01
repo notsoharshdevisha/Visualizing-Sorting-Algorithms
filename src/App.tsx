@@ -18,7 +18,7 @@ function App() {
 
   const getArray = () => {
     const array: number[] = []
-    for (let i = 0; i < 50; i++) {
+    for (let i = 0; i < 200; i++) {
       array.push(randomIntFromIntervals(10, 600))
     }
     setArray(array)
@@ -31,7 +31,6 @@ function App() {
   const initiateMergSort = () => {
     let animation: number[][] = []
     MergSort(array, animation)
-    console.log(animation)
     console.log(array)
     const bars = document.getElementsByClassName('array-bar') as HTMLCollectionOf<HTMLElement>
     MergSortAnimation(animation, bars)
