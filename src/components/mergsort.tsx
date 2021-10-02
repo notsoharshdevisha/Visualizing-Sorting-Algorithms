@@ -62,6 +62,8 @@ function merge(
 export function MergSortAnimation(
   animation: number[][],
   bars: HTMLCollectionOf<HTMLElement>,
+  delay: number,
+  primaryColor: string,
 ) {
   let animationColorKey = 1
   let swapbarKey = 1
@@ -74,8 +76,8 @@ export function MergSortAnimation(
           bars[bar2idx].style.backgroundColor = 'orange'
           animationColorKey--
         } else {
-          bars[bar1idx].style.backgroundColor = 'turquoise'
-          bars[bar2idx].style.backgroundColor = 'turquoise'
+          bars[bar1idx].style.backgroundColor = primaryColor
+          bars[bar2idx].style.backgroundColor = primaryColor
           animationColorKey++
         }
       } else {
@@ -84,10 +86,10 @@ export function MergSortAnimation(
           bars[bar1idx].style.backgroundColor = 'red'
           swapbarKey--
         } else {
-          bars[bar1idx].style.backgroundColor = 'turquoise'
+          bars[bar1idx].style.backgroundColor = primaryColor
           swapbarKey++
         }
       }
-    }, i * 5)
+    }, i * delay)
   }
 }

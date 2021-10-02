@@ -16,6 +16,8 @@ export function QuickSort(
 export function QuickSortAnimation(
   animation: number[][],
   bars: HTMLCollectionOf<HTMLElement>,
+  delay: number,
+  primaryColor: string,
 ) {
   let animationColorKey: number = 1
   let barSwapKey: number = 1
@@ -29,8 +31,8 @@ export function QuickSortAnimation(
           bars[bar2idx].style.backgroundColor = 'orange'
           animationColorKey--
         } else {
-          bars[bar1idx].style.backgroundColor = 'turquoise'
-          bars[bar2idx].style.backgroundColor = 'turquoise'
+          bars[bar1idx].style.backgroundColor = primaryColor
+          bars[bar2idx].style.backgroundColor = primaryColor
           animationColorKey++
         }
       } else {
@@ -43,12 +45,12 @@ export function QuickSortAnimation(
           bars[bar2idx].style.backgroundColor = 'red'
           barSwapKey--
         } else {
-          bars[bar1idx].style.backgroundColor = 'turquoise'
-          bars[bar2idx].style.backgroundColor = 'turquoise'
+          bars[bar1idx].style.backgroundColor = primaryColor
+          bars[bar2idx].style.backgroundColor = primaryColor
           barSwapKey++
         }
       }
-    }, i * 5)
+    }, i * delay)
   }
 }
 

@@ -1,36 +1,92 @@
+body {
+  background-color: #292929;
+}
+
 .App {
   text-align: center;
 }
 
+.app-header{
+  background-color: #212121;
+  height: 7.5vh;
+  text-align: center;
+  color: white;
+  padding-top: 25px;
+}
+
+.for-3d-effect {
+  height: 3px;
+  background-color: #000000;
+}
+
 .buttons-container {
   display:flex;
-  margin: 50px;
+  justify-content: center;
+  background-color: #212121;
   margin-bottom: 0px;
   margin-top: 0px;
-  padding: 20px;
+  padding: 15px;
 }
 
 .button {
+  align-self: center;
   margin-left: 30px;
   height: 30px;
   font-size: 13px;
-  font-weight: 700;
-  background-color: lightcyan;
+  font-weight: 450;
+  background-color: #c595f9;
   border-radius: 5px;
+  border: none;
+}
+
+.slider-container {
+  display: flex;
+  justify-content: center;
+  background-color: #292929;
+  color: white;
+  padding: 16px;
+}
+
+.slider {
+  -webkit-appearance: none;
+  background-color: white;
+  height: 5px;
+  width: 200px;
+  border-radius: 5px;
+  padding: 2px;
+  margin-right: 50px;
+  margin-left: 10px;
+  margin-top: 10px;
+}
+
+.slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #bd8df6;
+}
+
+.slider::-ms-track {
+  background: #bd8df6;
+
 }
 
 .visualizer-box {
   display: flex;
-  margin: 200px;
-  margin-top: 10px;
-  margin-bottom: 50px;
+  height: 80vh;
+  padding-top: 50px;
+  padding-left: 200px;
+  padding-right: 200px;
+  background-color: #292929;
 }
 
 .array-bar {
   flex: 1 1;
   width: 2px;
-  background-color: turquoise;
+  background-color: #bd8df6;
   margin: 1px;
+  margin-bottom: 20px;
   align-self: flex-end;
   transform: rotate(180deg);
 }

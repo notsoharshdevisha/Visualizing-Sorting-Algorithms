@@ -22,6 +22,8 @@ export function InsertionSort(
 export function InsertionSortAnimation(
   animation: number[][],
   bars: HTMLCollectionOf<HTMLElement>,
+  delay: number,
+  primaryColor: string,
 ) {
   let animationColorKey = 1
   let barswapKey = 1
@@ -34,8 +36,8 @@ export function InsertionSortAnimation(
           bars[bar2idx].style.backgroundColor = 'orange'
           animationColorKey--
         } else {
-          bars[bar1idx].style.backgroundColor = 'turquoise'
-          bars[bar2idx].style.backgroundColor = 'turquoise'
+          bars[bar1idx].style.backgroundColor = primaryColor
+          bars[bar2idx].style.backgroundColor = primaryColor
           animationColorKey++
         }
       } else {
@@ -44,10 +46,10 @@ export function InsertionSortAnimation(
           bars[bar1idx].style.height = `${newheight}px`
           barswapKey--
         } else {
-          bars[bar1idx].style.backgroundColor = 'turquoise'
+          bars[bar1idx].style.backgroundColor = primaryColor
           barswapKey++
         }
       }
-    }, i * 5)
+    }, i * delay)
   }
 }
