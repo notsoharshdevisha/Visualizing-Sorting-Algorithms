@@ -21,7 +21,6 @@ export function QuickSortAnimation(
 ) {
   let animationColorKey: number = 1
   let barSwapKey: number = 1
-  console.log(animation)
   for (let i = 0; i < animation.length; i++) {
     let [bar1idx, bar2idx, swapbar1idx, swapbar2idx] = animation[i]
     setTimeout(() => {

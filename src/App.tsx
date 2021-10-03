@@ -41,12 +41,34 @@ function App() {
     return Math.floor(Math.random() * (max - min + 1) + min)
   }
 
-  const initiateMergSort = () => {
+  const initiateSorting = (
+    algo: string,
+  ) => {
     let animation: number[][] = []
-    MergSort(array, animation)
     arraySizeSlider.disabled = true
     delaySlider.disabled = true
-    MergSortAnimation(animation, bars, delay, primaryColor)
+    switch (algo) {
+      case "MergSort":
+        MergSort(array, animation)
+        MergSortAnimation(animation, bars, delay, primaryColor)
+        break
+      case "QuickSort":
+        QuickSort(array, 0, array.length - 1, animation)
+        QuickSortAnimation(animation, bars, delay, primaryColor)
+        break
+      case "BubbleSort":
+        BubbleSort(array, animation)
+        BubbleSortAnimation(animation, bars, delay, primaryColor)
+        break
+      case "InsertionSort":
+        InsertionSort(array, animation)
+        InsertionSortAnimation(animation, bars, delay, primaryColor)
+        break
+      case "SelectionSort":
+        SelectionSort(array, animation)
+        SelectionSortAnimation(animation, bars, delay, primaryColor)
+        break
+    }
     SortedAnimation(animation.length * delay, bars)
     setTimeout(() => {
       arraySizeSlider.disabled = false
@@ -54,57 +76,10 @@ function App() {
     }, animation.length * delay)
   }
 
-  const initiateQuickSort = () => {
-    let animation: number[][] = []
-    QuickSort(array, 0, array.length - 1, animation)
-    setArray(array)
-    arraySizeSlider.disabled = true
-    delaySlider.disabled = true
-    QuickSortAnimation(animation, bars, delay, primaryColor)
-    SortedAnimation(animation.length * delay, bars)
-    setTimeout(() => {
-      arraySizeSlider.disabled = false
-      delaySlider.disabled = false
-    }, animation.length * delay)
-  }
-
-  const initiateBubbleSort = () => {
-    let animation: number[][] = []
-    BubbleSort(array, animation)
-    arraySizeSlider.disabled = true
-    delaySlider.disabled = true
-    BubbleSortAnimation(animation, bars, delay, primaryColor)
-    SortedAnimation(animation.length * delay, bars)
-    setTimeout(() => {
-      arraySizeSlider.disabled = false
-      delaySlider.disabled = false
-    }, animation.length * delay)
-  }
-
-  const initiateSelectionSort = () => {
-    let animation: number[][] = []
-    SelectionSort(array, animation)
-    arraySizeSlider.disabled = true
-    delaySlider.disabled = true
-    SelectionSortAnimation(animation, bars, delay, primaryColor)
-    SortedAnimation(animation.length * delay, bars)
-    setTimeout(() => {
-      arraySizeSlider.disabled = false
-      delaySlider.disabled = false
-    }, animation.length * delay)
-  }
-
-  const initiateInsertionSort = () => {
-    let animation: number[][] = []
-    InsertionSort(array, animation)
-    arraySizeSlider.disabled = true
-    delaySlider.disabled = true
-    InsertionSortAnimation(animation, bars, delay, primaryColor)
-    SortedAnimation(animation.length * delay, bars)
-    setTimeout(() => {
-      arraySizeSlider.disabled = false
-      delaySlider.disabled = false
-    }, animation.length * delay)
+  const handleSorting = (
+    e: any) => {
+    const target = e.target as Element
+    initiateSorting(target.id)
   }
 
   const changeArrayLength = (
@@ -117,7 +92,6 @@ function App() {
       setResetArray(true)
     }
   }
-
 
   return (
     <div className="App">
@@ -133,20 +107,25 @@ function App() {
           onClick={() => { resetArray ? setResetArray(false) : setResetArray(true) }}
         >Reset Array</button>
         <button className='button'
-          onClick={initiateMergSort}
+          id='MergSort'
+          onClick={(e) => handleSorting(e)}
         >MergSort</button>
         <button className='button'
-          onClick={initiateQuickSort}
+          id='QuickSort'
+          onClick={(e) => handleSorting(e)}
         >QuickSort</button>
         <button className='button'
-          onClick={initiateBubbleSort}
+          id='BubbleSort'
+          onClick={(e) => handleSorting(e)}
         >Bubble Sort</button>
         <button className='button'
-          onClick={initiateSelectionSort}
+          id='SelectionSort'
+          onClick={(e) => handleSorting(e)}
         >Selection Sort</button>
         <button className='button'
-          onClick={initiateInsertionSort}
-        >InsertionSort</button>
+          id='InsertionSort'
+          onClick={(e) => handleSorting(e)}
+        >Insertion Sort</button>
       </div>
 
       <div className='for-3d-effect'>
