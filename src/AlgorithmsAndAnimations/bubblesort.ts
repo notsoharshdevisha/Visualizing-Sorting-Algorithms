@@ -40,7 +40,7 @@ export function BubbleSortAnimation(
           animationColorKey++
         }
       } else {
-        if (barSwapKey == 1) {
+        if (barSwapKey === 1) {
           let bar1height = bars[bar1idx].style.height
           let bar2height = bars[bar2idx].style.height
           bars[bar1idx].style.height = bar2height

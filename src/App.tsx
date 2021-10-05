@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import './App.css';
-import { QuickSort, QuickSortAnimation } from './components/quicksort'
-import { BubbleSort, BubbleSortAnimation } from './components/bubblesort'
-import { SelectionSort, SelectionSortAnimation } from './components/selectionsort'
-import { MergSort, MergSortAnimation } from './components/mergsort'
-import { InsertionSort, InsertionSortAnimation } from './components/insertionsort'
-import { SortedAnimation } from './components/sortedanimation'
+import { QuickSort, QuickSortAnimation } from './AlgorithmsAndAnimations/quicksort'
+import { BubbleSort, BubbleSortAnimation } from './AlgorithmsAndAnimations/bubblesort'
+import { SelectionSort, SelectionSortAnimation } from './AlgorithmsAndAnimations/selectionsort'
+import { MergSort, MergSortAnimation } from './AlgorithmsAndAnimations/mergsort'
+import { InsertionSort, InsertionSortAnimation } from './AlgorithmsAndAnimations/insertionsort'
+import { SortedAnimation } from './AlgorithmsAndAnimations/sortedanimation'
 
 function App() {
 
